@@ -5,12 +5,11 @@
     <key>PayloadDisplayName</key>
     <string>NextDNS (HuyNT)</string>
     <key>PayloadDescription</key>
-    <string>📣📣📣Instructions for using DNS should be read:
-1.DO NOT use VPN when using this DNS configuration.
-2.DO NOT use another DNS when using this DNS configuration.
-3. DO NOT turn off the power when using this DNS configuration. If so, switch to the plane first.
-4.When using DNS, you can install a live certificate or cc die to register the application as usual, so don't care if it has been revoked or not.
-Join the group for support: https://t.me/dnscert</string>
+    <string>📣📣📣DNS Chặn TH cert or ads và cập nhập iOS
+    *Lưu ý: -Khi sử dụng DNS này!
+            -Không bật VPN và không được tắt nguồn điện thoại!
+            -Trước khi tắt nguồn hãy chuyển qua chế độ máy bay !
+            -Chúc các bạn trải nghiệm vui S2 </string>
     <key>PayloadIdentifier</key>
     <string>io.nextdns.2fbf39.profile</string>
     <key>PayloadScope</key>

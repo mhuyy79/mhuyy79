@@ -1,0 +1,112 @@
+#SUBSCRIBED https://config.nhutgg.io.vn/api/v2/client/client.php
+#NhutGGVN
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+external-controller: '127.0.0.1:9090'
+dns:
+  enable: true
+  ipv6: false
+  default-nameserver: null
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  nameserver: null
+  fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://8.8.4.4:853']
+  fallback-filter: {geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32]}
+proxies: [{alterId: 0, cipher: auto, flow: "", name: LQ1, network: ws, port: 80, server: 14.225.207.9, type: vmess, uuid: 06ccbfab-4011-4bd6-9e49-74d15e4b9c45, ws-opts: {headers: {Host: dl.ops.kgvn.garenanow.com}, path: /}}, {alterId: 0, cipher: "auto", flow: "", name: LQ2, network: ws, port: 80, server: 14.225.207.9, type: vmess, uuid: 59aa5e48-b0d6-438b-a51f-63f2fa2f1594, ws-opts: {headers: {Host: dl.ops.kgvn.garenanow.com}, path: /}}, {alterId: 0, cipher: "auto", flow: "", name: mydio, network: ws, port: 80, server: 14.225.207.9, type: vmess, uuid: 03763bc7-0205-4b56-ac08-d6b739e9c302, ws-opts: {headers: {Host: mydio.vn}, path: /}}]
+proxy-providers:
+  lyingBird:
+    interval: 3600
+    url: "https://config.nhutgg.io.vn/api/v2/client/client.php"
+  3X-UI:
+    interval: 0
+    url: https://nhutggvn.online:8889/sub/share
+  CUSTUM:
+    interval: 0
+    url: https://anhtai4g.me/api/v1/client/subscribe?token=519180014e7acb697610beedbe6cdf76
+proxy-groups:
+  - name: Auto Select
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
+    use:
+      - All
+      - 3X-UI
+    proxies:
+      - List Sever VPN
+      - LQ1
+      - LQ2
+      - DIRECT
+      - 🇸🇬 SG
+      - 🇯🇵 JP
+      - 🇻🇳 VN
+  - name: List Sever VPN
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    use:
+      - All
+      - CUSTUM
+      - 3X-UI
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    proxies:
+      - LQ1
+      - LQ2
+  - filter: 🇸🇬
+    interval: null
+    lazy: null
+    name: 🇸🇬 SG
+    proxies: null
+    type: url-test
+    use:
+      - 3X-UI
+      - CUSTUM
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Team.png
+  - filter: 🇯🇵
+    interval: 7200
+    lazy: true
+    name: 🇯🇵 JP
+    proxies: null
+    type: url-test
+    use:
+      - 3X-UI
+      - CUSTUM
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Team.png
+  - filter: 🇻🇳
+    interval: null
+    lazy: null
+    name: 🇻🇳 VN
+    type: url-test
+    use:
+      - 3X-UI
+      - CUSTUM
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Team.png
+  - name: Update Sorfware IOS
+    proxies:
+      - DIRECT
+      - REJECT
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
+rules:
+  - RULE-SET,IOS,Update Sorfware IOS # Allow
+  - DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
+  - DOMAIN-SUFFIX,ocsp-a.g.aaplimg.com,REJECT
+  - DOMAIN-SUFFIX,ocsp-us-lb.apple.com.akadns.net,REJECT
+  - DOMAIN-SUFFIX,ocsp2-lb.apple.com.akadns.net,REJECT
+  - DOMAIN-SUFFIX,ocsp2.g.aaplimg.com,REJECT
+  - DOMAIN-SUFFIX,axm-app.apple.com,REJECT
+  - DOMAIN-SUFFIX,comm-cohort.ess.apple.com,REJECT
+  - DOMAIN-SUFFIX,comm-main.ess.apple.com,REJECT
+  - DOMAIN-SUFFIX,ocsp2.apple.com,REJECT
+  - DOMAIN-SUFFIX,ocsp.apple.com,REJECT
+  - MATCH,GG
+rule-providers:
+  IOS:
+    behavior: domain
+    format: text
+    interval: 0
+    url: https://github.com/nhutggvnvn/filters/raw/master/list/allowotaapple.txt
+
+

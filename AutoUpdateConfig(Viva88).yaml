@@ -1,0 +1,121 @@
+#SUBSCRIBED https://config.nhutgg.io.vn/download.php
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+external-controller: '127.0.0.1:9090'
+dns:
+  enable: true
+  ipv6: false
+  default-nameserver: null
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  nameserver: null
+  fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://8.8.4.4:853']
+  fallback-filter: {geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32]}
+proxies: [{alterId: 0, cipher: auto, flow: "", name: LQ1, network: ws, port: 80, server: 14.225.207.9, type: vmess, uuid: 06ccbfab-4011-4bd6-9e49-74d15e4b9c45, ws-opts: {headers: {Host: dl.ops.kgvn.garenanow.com}, path: /}}, {alterId: 0, cipher: "auto", flow: "", name: LQ2, network: ws, port: 80, server: 14.225.207.9, type: vmess, uuid: 59aa5e48-b0d6-438b-a51f-63f2fa2f1594, ws-opts: {headers: {Host: dl.ops.kgvn.garenanow.com}, path: /}}]
+proxy-groups:
+  - {name: NhutGG, type: select, proxies: [DIRECT, 𝐀𝐔𝐓𝐎 𝐒𝐄𝐋𝐄𝐂𝐓], hidden: null, icon: 'https://raw.githubusercontent.com/nhutggvnvn/nhutgg.github.io/main/img/iconstash.png', ssid-policy: {cellular: 𝐀𝐔𝐓𝐎 𝐒𝐄𝐋𝐄𝐂𝐓, default: DIRECT, wifi: direct}, interval: 10, lazy: true}
+  - {name: 𝐀𝐔𝐓𝐎 𝐒𝐄𝐋𝐄𝐂𝐓, type: select, proxies: [𝐅𝐔𝐋𝐋 𝐒𝐄𝐕𝐄𝐑, 𝐀𝐔𝐓𝐎 𝐀𝐋𝐋, 𝐕𝐈𝐄𝐓 𝐍𝐀𝐌, 𝐗𝐆𝐀𝐌𝐈𝐍𝐆, 𝐒𝐄𝐕𝐄𝐑 𝐍𝐆𝐎𝐀𝐈, LQ1, LQ2], use: null, include-all: null, use-url: null, icon: 'https://raw.githubusercontent.com/nhutggvnvn/Qure/master/gg/vpn4g.png', interval: 10, lazy: true}
+  - {name: LIEN QUAN, type: select, proxies: [LQ1, LQ2], use: null, include-all: null, use-url: null, icon: 'https://raw.githubusercontent.com/nhutggvnvn/Qure/master/gg/lienquanicon.png', interval: 10, lazy: true}
+  - {name: TIKTOK, type: select, proxies: [𝐅𝐔𝐋𝐋 𝐒𝐄𝐕𝐄𝐑], use: null, include-all: null, use-url: null, icon: 'https://raw.githubusercontent.com/nhutggvnvn/Qure/master/gg/tiktok.png', interval: 10, lazy: true}
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Server.png
+    name: 𝐅𝐔𝐋𝐋 𝐒𝐄𝐕𝐄𝐑
+    type: select
+    use:
+      - VPN
+    interval: 10
+    lazy: true
+  - filter: 🚀
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
+    lazy: true
+    name: 𝐗𝐆𝐀𝐌𝐈𝐍𝐆
+    type: select
+    use:
+      - VPN
+  - {name: 𝐕𝐈𝐄𝐓 𝐍𝐀𝐌, type: url-test, proxies: null, url: 'http://www.gstatic.com/generate_204', interval: 10, hidden: null, use-url: null, icon: 'https://cdn1.iconfinder.com/data/icons/ensign-11/512/280_Ensign_Flag_Nation_vietnam-1024.png', use: [VPN], filter: '🇻🇳', lazy: true}
+  - name: 𝐒𝐄𝐕𝐄𝐑 𝐍𝐆𝐎𝐀𝐈
+    type: url-test
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Quantumult_X.png
+    use:
+      - VPN
+    filter: (🇸🇬|🇯🇵)
+  - {name: 𝐀𝐔𝐓𝐎 𝐀𝐋𝐋, type: url-test, proxies: null, url: 'http://www.gstatic.com/generate_204', interval: 10, hidden: null, use-url: null, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png', use: [VPN], filter: null, lazy: true}
+  
+  - name: 𝐀𝐝𝐁𝐥𝐨𝐜𝐤
+    proxies:
+      - DIRECT
+      - REJECT
+    type: select
+    icon: https://raw.githubusercontent.com/nhutggvnvn/Qure/master/gg/adblock.png
+    lazy: true
+rules:
+  - DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
+  - DOMAIN-SUFFIX,ocsp-a.g.aaplimg.com,REJECT
+  - DOMAIN-SUFFIX,ocsp-us-lb.apple.com.akadns.net,REJECT
+  - DOMAIN-SUFFIX,ocsp2-lb.apple.com.akadns.net,REJECT
+  - DOMAIN-SUFFIX,ocsp2.g.aaplimg.com,REJECT
+  - DOMAIN-SUFFIX,axm-app.apple.com,REJECT
+  - DOMAIN-SUFFIX,comm-cohort.ess.apple.com,REJECT
+  - DOMAIN-SUFFIX,comm-main.ess.apple.com,REJECT
+  - DOMAIN-SUFFIX,gdmf.apple.com,REJECT
+  - DOMAIN-SUFFIX,mesu.apple.com,REJECT
+  - DOMAIN-SUFFIX,ocsp2.apple.com,REJECT
+  - DOMAIN-SUFFIX,ocsp.apple.com,REJECT
+  - DST-PORT,5223,𝐀𝐔𝐓𝐎 𝐒𝐄𝐋𝐄𝐂𝐓
+  - DOMAIN-SUFFIX,*.apple.com,𝐀𝐔𝐓𝐎 𝐒𝐄𝐋𝐄𝐂𝐓
+
+  - DOMAIN,app-measurement.com,REJECT
+  - MATCH,NhutGG
+#rule-providers: {HostVN: {behavior: domain, format: yaml, interval: 0, url: 'https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/hostsVN-clash-rule.yaml'}, AdvertisingLite: {behavior: domain, format: yaml, interval: 0, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.yaml'}, ADSBLOCK: {behavior: domain, format: yaml, interval: 0, url: 'https://github.com/lonely0811/olsd/raw/main/stash/ADSG.yml'}, ADSBLOCK1: {behavior: classical, format: yaml, interval: 0, url: 'https://github.com/lonely0811/olsd/raw/main/stash/ADSVN1.yml'}, ADSBLOCK2: {behavior: classical, format: yaml, interval: 0, url: 'https://github.com/lonely0811/olsd/raw/main/stash/ADSVN2.yml'}}
+http:
+  mitm:
+    - "-redirector*.googlevideo.com"
+    - "*.googlevideo.com"
+    - "www.youtube.com"
+    - "s.youtube.com"
+    - "youtubei.googleapis.com"
+    - "mobile-api.adguard.org"
+  script:
+    - match: ^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting)\?
+      name: YouTuberesponse
+      type: response
+      require-body: true
+      binary-mode: true
+      timeout: 10
+    - match: ^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|reel\/reel_watch_sequence)\?
+      name: YouTuberequest
+      type: request
+      require-body: true
+      binary-mode: true
+      timeout: 10
+    - match: ^https?:\/\/mobile-api\.adguard\.org\/api\/.+\/ios_validate_receipt
+      name: AdGuard
+      type: response
+      require-body: true
+      timeout: 10
+  rewrite:
+    - (^https?:\/\/[\w-]+\.googlevideo\.com\/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+) $1$2$3 302
+    - ^https?:\/\/[\w-]+\.googlevideo\.com\/(?!(dclk_video_ads|videoplayback\?)).+&oad - reject-200
+    - ^https?:\/\/(www|s)\.youtube\.com\/api\/stats\/ads - reject-200
+    - ^https?:\/\/(www|s)\.youtube\.com\/(pagead|ptracking) - reject-200
+    - ^https?:\/\/s\.youtube\.com\/api\/stats\/qoe\?adcontext - reject-200
+script-providers:
+  YouTuberesponse:
+    url: https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/dist/youtube.response.beta.js
+    interval: 86400
+  YouTuberequest:
+    url: https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/dist/youtube.request.beta.js
+    interval: 86400
+  AdGuard:
+    url: https://github.com/lonely0811/olsd/raw/main/ad.js
+    interval: 86400
+proxy-providers:
+  VPN:
+    interval: 0
+    url: https://nhutggvn.online:8889/sub/share
+#FlyingBird:
+    #interval: 86400
+    #url: "https://config.nhutgg.io.vn/download.php" 

@@ -1,0 +1,124 @@
+include_all_networks: true
+include_apns: true
+include_cellular_services: true
+dns_servers:
+- https://doh.pub/dns-query
+hosts:
+  '*twitter*': 8.8.8.8
+  '*.xiaomi.com*': 119.29.29.29
+  '*.tmall.com*': 223.5.5.5
+  '*.tencent.com*': 119.29.29.29
+  '*.icloud.com.cn*': 119.29.29.29
+  '*facebook*': 8.8.8.8
+  '*youtube*': 8.8.8.8
+  '*.icloud.com*': 119.29.29.29
+  '*.netease.com*': 119.29.29.29
+  '*.127.net*': 119.29.29.29
+  '*.126.com*': 119.29.29.29
+  '*googlevideo*': 8.8.8.8
+  '*x.com': 8.8.8.8
+  hdslb.com*: 119.29.29.29
+  '*.jd.com*': 119.28.28.28
+  '*.aliyun.com*': 223.5.5.5
+  '*.163.com*': 119.29.29.29
+  '*.126.net*': 119.29.29.29
+  '*telegram*': 8.8.8.8
+  '*.qq.com*': 119.28.28.28
+  '*.mi.com*': 119.29.29.29
+  '*.alicdn.com*': 223.5.5.5
+  '*.weixin.com*': 119.29.29.29
+  '*.taobao.com*': 223.5.5.5
+  '*.bilibili.com*': 119.29.29.29
+  '*.alipay.com*': 223.5.5.5
+secure_dns:
+  servers:
+  - https://8.8.8.8
+  ecs: true
+  public_ip_lookup_url: https://ifconfig.me/ip
+  exclude:
+  - localhost
+  - '*.apple.com'
+  - '*.mzstatic.com'
+proxies:
+- vmess:
+    name: Egern App
+    server: nhutggvn.online
+    port: 80
+    user_id: 03763bc7-0205-4b56-ac08-d6b739e9c302
+    security: ''
+    legacy: false
+    tfo: false
+    udp_relay: true
+    transport:
+      ws:
+        path: /
+        headers:
+          Host: dl.ops.kgvn.garenanow.com:80
+policy_groups:
+- select:
+    name: Proxy
+    policies:
+    - Egern App
+    hidden: false
+rules:
+- domain_suffix:
+    match: comm-main.ess.apple.com
+    policy: REJECT
+- domain_suffix:
+    match: comm-cohort.ess.apple.com
+    policy: REJECT
+- domain_suffix:
+    match: axm-app.apple.com
+    policy: REJECT
+- domain_suffix:
+    match: ocsp2.g.aaplimg.com
+    policy: REJECT
+- domain_suffix:
+    match: ocsp2-lb.apple.com.akadns.net
+    policy: REJECT
+- domain_suffix:
+    match: ocsp-us-lb.apple.com.akadns.net
+    policy: REJECT
+- domain_suffix:
+    match: ocsp-a.g.aaplimg.com
+    policy: REJECT
+- domain_suffix:
+    match: ocsp-lb.apple.com.akadns.net
+    policy: REJECT
+- domain_suffix:
+    match: mesu.apple.com
+    policy: REJECT
+- domain_suffix:
+    match: gdmf.apple.com
+    policy: REJECT
+- domain_keyword:
+    match: ocsp.apple.com
+    policy: REJECT
+- domain_suffix:
+    match: ocsp2.apple.com
+    policy: REJECT
+- ip_cidr:
+    match: 192.168.0.0/16
+    policy: DIRECT
+- ip_cidr:
+    match: 10.0.0.0/8
+    policy: DIRECT
+- ip_cidr:
+    match: 127.0.0.0/8
+    policy: DIRECT
+- ip_cidr:
+    match: 172.16.0.0/12
+    policy: DIRECT
+- ip_cidr:
+    match: 192.128.0.0/16
+    policy: DIRECT
+- ip_cidr:
+    match: 224.0.0.0/24
+    policy: DIRECT
+- geoip:
+    match: CN
+    policy: DIRECT
+- default:
+    policy: Proxy
+mitm:
+  enabled: true

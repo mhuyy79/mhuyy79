@@ -1,0 +1,152 @@
+mixed-port: 7890
+allow-lan: true
+bind-address: "*"
+mode: rule
+log-level: info
+external-controller: "127.0.0.1:9090"
+dns:
+  enable: true
+  ipv6: false
+  default-nameserver: null
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  nameserver: null
+  fallback: ["https://doh.dns.sb/dns-query", "https://dns.cloudflare.com/dns-query", "https://dns.twnic.tw/dns-query", "tls://8.8.4.4:853"]
+  fallback-filter: {geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32]}
+proxies: [{alterId: 0, cipher: auto, flow: "", name: 💈dl.ops.kgvn.garenanow.com, network: ws, port: 80, server: 14.225.207.9, type: vmess, uuid: 06ccbfab-4011-4bd6-9e49-74d15e4b9c45, ws-opts: {headers: {Host: dl.ops.kgvn.garenanow.com}, path: /}}]
+proxy-groups:
+  - {name: Select Default, type: select, proxies: [𝐀𝐔𝐓𝐎 𝐒𝐄𝐋𝐄𝐂𝐓, DIRECT], hidden: null, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/WiFi.png", ssid-policy: {cellular: 𝐀𝐔𝐓𝐎 𝐒𝐄𝐋𝐄𝐂𝐓, default: DIRECT, wifi: direct}, interval: 10, lazy: true}
+  - {name: 𝐀𝐔𝐓𝐎 𝐒𝐄𝐋𝐄𝐂𝐓, type: select, proxies: [𝐒𝐄𝐕𝐄𝐑 All SUB, Foreign Servers, SEVER Việt Nam, 'SNI: Liên Quân mobile'], use: null, include-all: null, use-url: null, icon: "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/FallBack.png", interval: 10, lazy: true}
+  - {name: 'SNI: Liên Quân mobile', type: select, proxies: [💈dl.ops.kgvn.garenanow.com, DIRECT], use: null, include-all: null, use-url: null, icon: "https://raw.githubusercontent.com/nhutggvnvn/Qure/master/gg/lienquanicon.png", interval: 10, lazy: true}
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Team.png
+    name: 𝐒𝐄𝐕𝐄𝐑 All SUB
+    type: select
+    use:
+      - PANEL
+      - CUSTUM
+    interval: 10
+    lazy: true
+    filter: (🇻🇳)
+    proxies:
+      - 'SNI: Liên Quân mobile'
+      - DIRECT
+  - {name: SEVER Việt Nam, type: select, proxies: [DIRECT], url: "http://www.gstatic.com/generate_204", interval: 10, hidden: null, use-url: null, icon: "https://cdn1.iconfinder.com/data/icons/ensign-11/512/280_Ensign_Flag_Nation_vietnam-1024.png", use: [PANEL, Sub], filter: "🇻🇳", lazy: true}
+  - name: Sever Singapore
+    type: url-test
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+    use:
+      - PANEL
+      - CUSTUM
+      - Sub
+    filter: (🇸🇬)
+    proxies:
+      - DIRECT
+  - name: Sever Japan
+    type: url-test
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+    use:
+      - PANEL
+      - CUSTUM
+      - Sub
+    filter: (🇯🇵)
+    proxies:
+      - DIRECT
+  - name: Sever USA
+    type: url-test
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+    use:
+      - PANEL
+      - CUSTUM
+      - Sub
+    filter: (🇺🇸)
+    proxies:
+      - DIRECT
+  - name: Foreign Servers
+    type: select
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Category_Globe.png
+    use:
+      - PANEL
+      - CUSTUM
+      - Sub
+    filter: (🇸🇬|🇯🇵|🇺🇸)
+    proxies:
+      - DIRECT
+  - name: Block ADS & Software 100%
+    #  - {name: 𝐀𝐔𝐓𝐎 𝐀𝐋𝐋, type: url-test, proxies: null, url: 'http://www.gstatic.com/generate_204', interval: 10, hidden: null, use-url: null, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png', use: [VPN], filter: null, lazy: true}
+
+    proxies:
+      - REJECT
+      - Proxy
+    type: select
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/lige47/ad(6).png
+    lazy: true
+  - hidden: true
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Category_Globe.png
+    name: Proxy
+    proxies:
+      - Select Default
+    type: url-test
+rules:
+  - RULE-SET,updateadsgg,Block ADS & Software 100%
+  - RULE-SET,domain-VN,Block ADS & Software 100%
+  - RULE-SET,adsnl,Block ADS & Software 100%
+  - RULE-SET,hostsVN-clash-rule,Block ADS & Software 100%
+  - RULE-SET,ads-ags,Block ADS & Software 100%
+  - RULE-SET,wildcard-VN,Block ADS & Software 100%
+  - RULE-SET,phishing,Block ADS & Software 100%
+  - RULE-SET,redirect,Block ADS & Software 100%
+  - RULE-SET,allowotaapple,Block ADS & Software 100%
+  - RULE-SET,domainhostvn,Block ADS & Software 100%
+  - RULE-SET,fraud,Block ADS & Software 100%
+  - RULE-SET,KEYWORD,Block ADS & Software 100%
+  - RULE-SET,basic,Block ADS & Software 100%
+  - RULE-SET,domanset2,Block ADS & Software 100%
+  - RULE-SET,wildcard,Block ADS & Software 100%
+  - DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
+  - DOMAIN-SUFFIX,ocsp-a.g.aaplimg.com,REJECT
+  - DOMAIN-SUFFIX,ocsp-us-lb.apple.com.akadns.net,REJECT
+  - DOMAIN-SUFFIX,ocsp2-lb.apple.com.akadns.net,REJECT
+  - DOMAIN-SUFFIX,ocsp2.g.aaplimg.com,REJECT
+  - DOMAIN-SUFFIX,axm-app.apple.com,REJECT
+  - DOMAIN-SUFFIX,comm-cohort.ess.apple.com,REJECT
+  - DOMAIN-SUFFIX,comm-main.ess.apple.com,REJECT
+  - DOMAIN-SUFFIX,ocsp2.apple.com,REJECT
+  - DOMAIN-SUFFIX,ocsp.apple.com,REJECT
+  - DST-PORT,5223,𝐀𝐔𝐓𝐎 𝐒𝐄𝐋𝐄𝐂𝐓
+  - DOMAIN,app-measurement.com,REJECT
+  - MATCH,Select Default
+rule-providers: {allowotaapple: {behavior: domain, format: text, interval: 0, url: 'https://github.com/nhutggvnvn/filters/raw/master/list/allowotaapple.txt'}, redirect: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/blocklistproject/Lists/raw/master/alt-version/redirect-nl.txt'}, basic: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/blocklistproject/Lists/raw/master/alt-version/basic-nl.txt'}, phishing: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/blocklistproject/Lists/raw/master/alt-version/phishing-nl.txt'}, adsnl: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/blocklistproject/Lists/raw/master/alt-version/ads-nl.txt'}, KEYWORD: {behavior: classical, format: yaml, interval: 86400, url: 'https://github.com/lonely0811/olsd/raw/main/stash/KEYWORD.yaml'}, domain-VN: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/bigdargon/hostsVN/raw/master/option/domain-VN.txt'}, wildcard: {behavior: domain, format: text, interval: 0, url: 'https://github.com/bigdargon/hostsVN/raw/master/option/wildcard.txt'}, fraud: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/blocklistproject/Lists/raw/master/alt-version/fraud-nl.txt'}, updateadsgg: {behavior: domain, format: text, interval: 86400, url: 'https://nhutgg.io.vn/host/updateads.txt'}, domanset2: {behavior: domain, format: yaml, interval: 86400, url: 'https://github.com/lonely0811/olsd/raw/main/clash/domanset2.yaml'}, domainhostvn: {behavior: domain, format: text, interval: 0, url: 'https://github.com/bigdargon/hostsVN/raw/master/option/domain.txt'}, wildcard-VN: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/bigdargon/hostsVN/raw/master/option/wildcard-VN.txt'}, ads-ags: {behavior: domain, format: text, interval: 86400, url: 'https://blocklistproject.github.io/Lists/adguard/ads-ags.txt'}, hostsVN-clash-rule: {behavior: domain, format: yaml, interval: 86400, url: 'https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/hostsVN-clash-rule.yaml'}}
+http:
+  mitm:
+    - "-redirector*.googlevideo.com"
+    - "*.googlevideo.com"
+    - "www.youtube.com"
+    - "s.youtube.com"
+    - "youtubei.googleapis.com"
+    - "mobile-api.adguard.org"
+  script:
+  #- match: ^https?:\/\/mobile-api\.adguard\.org\/api\/.+\/ios_validate_receipt
+  #name: ads
+  #type: response
+  #require-body: true
+  #timeout: 10
+  rewrite:
+  #- (^https?:\/\/[\w-]+\.googlevideo\.com\/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+) $1$2$3 302
+script-providers:
+#ads:
+#url: https://github.com/lonely0811/olsd/raw/main/ad.js
+#interval: 86400
+proxy-providers:
+  PANEL:
+    interval: 0
+    url: https://nhutggvn.online:8889/sub/share
+  CUSTUM:
+    interval: 0
+    url: https://tai4g.vn/api/v1/client/subscribe?token=14513b8d7c013035a52040a440afbc13
+  Sub:
+    interval: 0
+    url: https://4gsieuviet.com/api/v1/client/subscribe?token=fc58397f4dc194bf462837945b5e7547
+lyingBird:
+  interval: 86400
+  url: "https://config.nhutgg.io.vn/api/v3/client/client.php"

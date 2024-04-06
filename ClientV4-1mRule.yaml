@@ -1,0 +1,166 @@
+# port: 7890
+# socks-port: 7891
+# redir-port: 7892
+# tproxy-port: 7893
+mixed-port: 7890
+allow-lan: true
+bind-address: "*"
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+sniffer:
+  enable: true
+  override-destination: true
+  sniffing: [tls, http]
+dns:
+  enable: true
+  listen: '0.0.0.0:8853'
+  ipv6: false
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+    - 9.9.9.9
+  enhanced-mode: redir-host
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  nameserver:
+    - https://doh.pub/dns-query
+  fallback:
+    - tls://1.0.0.1:853
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  fallback-filter:
+    geoip: true
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+proxies: [{alterId: 0, cipher: auto, flow: "", name: dl.ops.kgvn.garenanow.com, network: ws, port: 80, server: 14.225.207.9, type: vmess, uuid: 06ccbfab-4011-4bd6-9e49-74d15e4b9c45, ws-opts: {headers: {Host: dl.ops.kgvn.garenanow.com}, path: /}}, {name: 🇺🇸45.61.116.41, password: ohoonrdqt51a, port: 6719, server: 45.61.116.41, type: socks5, username: hzqqefxx}]
+proxy-groups:
+  - {name: Select Default V3, type: select, proxies: [Auto select, DIRECT], hidden: null, icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Enterprise.png", ssid-policy: {cellular: Auto select, wifi: direct}, interval: 10, lazy: true}
+  - {name: Auto select, type: select, proxies: [Severs All Subcribed, Sever Viet Nam, Lien Quan Mobile, Server Singapore, Sever Japan, Sever USA], use: null, include-all: null, use-url: null, icon: "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/FallBack.png", interval: 10, lazy: true}
+  - {name: 'Lien Quan Mobile', type: select, proxies: [dl.ops.kgvn.garenanow.com, DIRECT], use: null, include-all: null, use-url: null, icon: "https://raw.githubusercontent.com/nhutggvnvn/Qure/master/gg/lienquanicon.png", interval: 10, lazy: true, filter: 🇻🇳}
+  - name: Tiktok
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok_1.png
+    proxies:
+      - DIRECT
+    use:
+      - 3X-UI
+      - TAI4G.VN
+      - SubVPN
+    filter: 🇻🇳
+  - {name: Sever Viet Nam, type: select, proxies: [DIRECT], url: "http://www.gstatic.com/generate_204", interval: 10, hidden: null, use-url: null, icon: "https://cdn1.iconfinder.com/data/icons/ensign-11/512/280_Ensign_Flag_Nation_vietnam-1024.png", use: [3X-UI, SubVPN], filter: "🇻🇳", lazy: true}
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+    name: Server Singapore
+    proxies:
+      - DIRECT
+    type: select
+    use:
+      - VPN4G
+      - SubVPN
+    filter: 🇸🇬
+  - filter: 🇯🇵
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+    name: Sever Japan
+    proxies:
+      - DIRECT
+    type: select
+    use:
+      - VPN4G
+      - SubVPN
+  - name: Sever USA
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+    use:
+      - VPN4G
+      - SubVPN
+    filter: (🇺🇸)
+    proxies:
+      - DIRECT
+      - 🇺🇸45.61.116.41
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/Team.png
+    name: Severs All Subcribed
+    type: select
+    use:
+      - 3X-UI
+      - VPN4G
+    interval: 10
+    lazy: true
+    proxies:
+      - Lien Quan Mobile
+      - DIRECT
+  - name: Block ADS & Software 100%
+    #  - {name: 𝐀𝐔𝐓𝐎 𝐀𝐋𝐋, type: url-test, proxies: null, url: 'http://www.gstatic.com/generate_204', interval: 10, hidden: null, use-url: null, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png', use: [VPN], filter: null, lazy: true}
+
+    proxies:
+      - REJECT
+      - Proxy
+    type: select
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/lige47/ad(6).png
+    lazy: true
+  - hidden: true
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Category_Globe.png
+    name: Proxy
+    proxies:
+      - Select Default V3
+    type: url-test
+rules:
+  - RULE-SET,updateadsgg,Block ADS & Software 100%
+  - RULE-SET,domain-VN,Block ADS & Software 100%
+  - RULE-SET,adsnl,Block ADS & Software 100%
+  - RULE-SET,hostsVN-clash-rule,Block ADS & Software 100%
+  - RULE-SET,ads-ags,Block ADS & Software 100%
+  - RULE-SET,wildcard-VN,Block ADS & Software 100%
+  - RULE-SET,phishing,Block ADS & Software 100%
+  - RULE-SET,redirect,Block ADS & Software 100%
+  - RULE-SET,allowotaapple,Block ADS & Software 100%
+  - RULE-SET,domainhostvn,Block ADS & Software 100%
+  - RULE-SET,fraud,Block ADS & Software 100%
+  - RULE-SET,KEYWORD,Block ADS & Software 100%
+  - RULE-SET,basic,Block ADS & Software 100%
+  - RULE-SET,domanset2,Block ADS & Software 100%
+  - RULE-SET,wildcard,Block ADS & Software 100%
+  - DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net,REJECT
+  - DOMAIN-SUFFIX,ocsp-a.g.aaplimg.com,REJECT
+  - DOMAIN-SUFFIX,ocsp-us-lb.apple.com.akadns.net,REJECT
+  - DOMAIN-SUFFIX,ocsp2-lb.apple.com.akadns.net,REJECT
+  - DOMAIN-SUFFIX,ocsp2.g.aaplimg.com,REJECT
+  - DOMAIN-SUFFIX,axm-app.apple.com,REJECT
+  - DOMAIN-SUFFIX,comm-cohort.ess.apple.com,REJECT
+  - DOMAIN-SUFFIX,comm-main.ess.apple.com,REJECT
+  - DOMAIN-SUFFIX,ocsp2.apple.com,REJECT
+  - DOMAIN-SUFFIX,ocsp.apple.com,REJECT
+  - DST-PORT,5223,𝐀𝐔𝐓𝐎 𝐒𝐄𝐋𝐄𝐂𝐓
+  - DOMAIN,app-measurement.com,REJECT
+  - MATCH,Select Default V3
+rule-providers: {allowotaapple: {behavior: domain, format: text, interval: 0, url: 'https://github.com/nhutggvnvn/filters/raw/master/list/allowotaapple.txt'}, redirect: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/blocklistproject/Lists/raw/master/alt-version/redirect-nl.txt'}, basic: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/blocklistproject/Lists/raw/master/alt-version/basic-nl.txt'}, phishing: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/blocklistproject/Lists/raw/master/alt-version/phishing-nl.txt'}, adsnl: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/blocklistproject/Lists/raw/master/alt-version/ads-nl.txt'}, KEYWORD: {behavior: classical, format: yaml, interval: 86400, url: 'https://github.com/lonely0811/olsd/raw/main/stash/KEYWORD.yaml'}, domain-VN: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/bigdargon/hostsVN/raw/master/option/domain-VN.txt'}, wildcard: {behavior: domain, format: text, interval: 0, url: 'https://github.com/bigdargon/hostsVN/raw/master/option/wildcard.txt'}, fraud: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/blocklistproject/Lists/raw/master/alt-version/fraud-nl.txt'}, updateadsgg: {behavior: domain, format: text, interval: 86400, url: 'https://nhutgg.io.vn/host/updateads.txt'}, domanset2: {behavior: domain, format: yaml, interval: 86400, url: 'https://github.com/lonely0811/olsd/raw/main/clash/domanset2.yaml'}, domainhostvn: {behavior: domain, format: text, interval: 0, url: 'https://github.com/bigdargon/hostsVN/raw/master/option/domain.txt'}, wildcard-VN: {behavior: domain, format: text, interval: 86400, url: 'https://github.com/bigdargon/hostsVN/raw/master/option/wildcard-VN.txt'}, ads-ags: {behavior: domain, format: text, interval: 86400, url: 'https://blocklistproject.github.io/Lists/adguard/ads-ags.txt'}, hostsVN-clash-rule: {behavior: domain, format: yaml, interval: 86400, url: 'https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/hostsVN-clash-rule.yaml'}}
+http:
+  mitm:
+    - "-redirector*.googlevideo.com"
+    - "*.googlevideo.com"
+    - "www.youtube.com"
+    - "s.youtube.com"
+    - "youtubei.googleapis.com"
+    - "mobile-api.adguard.org"
+  script:
+  #- match: ^https?:\/\/mobile-api\.adguard\.org\/api\/.+\/ios_validate_receipt
+  #name: ads
+  #type: response
+  #require-body: true
+  #timeout: 10
+  rewrite:
+  #- (^https?:\/\/[\w-]+\.googlevideo\.com\/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+) $1$2$3 302
+script-providers:
+#ads:
+#url: https://github.com/lonely0811/olsd/raw/main/ad.js
+#interval: 86400
+proxy-providers:
+  3X-UI:
+    interval: 0
+    url: https://nhutggvn.online:8889/sub/share
+  VPN4G:
+    interval: 0
+    url: https://tai4g.vn/api/v1/client/subscribe?token=14513b8d7c013035a52040a440afbc13
+  SubVPN:
+    interval: 0
+    url: https://4gsieuviet.com/api/v1/client/subscribe?token=fc58397f4dc194bf462837945b5e7547

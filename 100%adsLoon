@@ -35,8 +35,10 @@ https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/hostsVN-surge-
 https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/hostsVN-surge-rule.conf, policy=REJECT, tag=🇻🇳hostsVN, enabled=true
 https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/hostsVN-surge-OTA.conf, policy=REJECT, tag=🇻🇳hostsVN-OTA, enabled=false
 https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/hostsVN-surge-FB.conf, policy=REJECT, tag=🇻🇳hostsVN-FB, enabled=false
-https://nhutgg.io.vn/host/updateads.txt, policy=REJECT, tag=Adblock-update, enabled=true
 https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/gambling/surge-rule.conf, policy=REJECT, tag=🇻🇳hostsVN-Gambling, enabled=false
+https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/wildcard.txt, policy=REJECT, tag=🇻🇳hostsVN-Wildcard, enabled=true
+https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/source/threat-VN.txt, policy=REJECT, tag=🇻🇳hostsVN-Source, enabled=true
+https://nhutgg.io.vn/host/updateads.txt, policy=REJECT, tag=Adblock-update, enabled=true
 https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/threat/surge-rule.conf, policy=REJECT, tag=🇻🇳11, enabled=true
 https://nhutgg.io.vn/host/alexa.txt, policy=REJECT, tag=🇻🇳22, enabled=true
 https://nhutgg.io.vn/host/apple.txt, policy=REJECT, tag=🇻🇳33, enabled=false
